@@ -17,17 +17,19 @@ service = Service(chrome_driver_path)
 #mediante navegador ...
 driver = webdriver.Chrome(service=service)
 
+driver.implicitly_wait(0)
 driver.get(url)
+
 
 boton: WebElement = driver.find_element(By.LINK_TEXT,"Tablets")
 assert boton.is_displayed(), "No se encuentra el boton "
 boton.click()
-time.sleep(3)
+
 
 samsung: WebElement = driver.find_element(By.LINK_TEXT, "Samsung Galaxy Tab 10.1")
 assert samsung.is_displayed(),"No se encuentra el elemento"
 samsung.click()
-time.sleep(2)
+
 
 precio: WebElement = driver.find_element(By.XPATH, "//h2[text()='$241.99']")
 assert precio.is_displayed(), "el precio no coincide"
@@ -35,12 +37,12 @@ assert precio.is_displayed(), "el precio no coincide"
 compra: WebElement = driver.find_element(By.ID, "button-cart")
 assert compra.is_displayed(), "No se encuentra el boton"
 compra.click()
-time.sleep(3)
+
 carrito: WebElement = driver.find_element(By.ID,"cart-total")
 assert carrito.is_displayed(), "No se encuentra el elemento"
 
 
 
 
-time.sleep(3)
+
 driver.quit()
